@@ -9,7 +9,7 @@ const MovieList = ({ tranding, loading }) => {
             {loading ? (<CastLoader />) : (<ul>
                 {tranding.map(({ id, title, name }) => {
                     <li key={id}>
-                        <NavLink to={`movies/${id}`} state={{ from: location.pathname }} >
+                        <NavLink to={`movies/${id}`} state={{ from: location }} >
                             {title || name}
                         </NavLink>
                     </li>

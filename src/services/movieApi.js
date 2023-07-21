@@ -17,9 +17,7 @@ export const requestMoviesByName = async () => {
 
 //MOVIE DETAILS REQUEST
 export const requestMovieById = async movieId => {
-    const response = await axios
-        .get(`/movie/${movieId}?api_key=${API_KEY}`)
-        .catch(error => { throw new Error('Oops, something goes wrong :(') });
+    const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`);
     return response.data;
 };
 
