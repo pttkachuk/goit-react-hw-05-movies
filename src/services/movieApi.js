@@ -10,8 +10,8 @@ export const requestTrandingMovies = async () => {
 };
 
 //SEARCH MOVIE REQUEST
-export const requestMoviesByName = async () => {
-    const { data } = await axios.get(`/search/movie?api_key=${API_KEY}&query=${searchQuery}&language=en-US&page=1&include_adult=false`);
+export const requestMoviesByName = async (query) => {
+    const { data } = await axios.get(`/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
     return data;
 };
 

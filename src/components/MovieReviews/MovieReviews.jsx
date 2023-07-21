@@ -30,12 +30,14 @@ const MovieReviews = () => {
       ) : (
         <>
           {reviews.map(({ id, author, content }) => {
-            <div>
-              <li key={id}>
-                <h3>Author: {author}</h3>
-                <p>{content}</p>
-              </li>
-            </div>;
+            return (
+              <div>
+                <li key={id}>
+                  <h3>Author: {author}</h3>
+                  <p>{content}</p>
+                </li>
+              </div>
+            );
           })}
         </>
       )}

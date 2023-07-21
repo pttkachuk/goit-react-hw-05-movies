@@ -11,11 +11,13 @@ const MovieList = ({ tranding, loading }) => {
       ) : (
         <ul>
           {tranding.map(({ id, title, name }) => {
-            <li key={id}>
-              <NavLink to={`movies/${id}`} state={{ from: location }}>
-                {title || name}
-              </NavLink>
-            </li>;
+            return (
+              <li key={id}>
+                <NavLink to={`movies/${id}`} state={{ from: location }}>
+                  {title || name}
+                </NavLink>
+              </li>
+            );
           })}
         </ul>
       )}

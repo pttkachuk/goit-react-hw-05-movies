@@ -1,5 +1,5 @@
 import CastLoader from 'components/CastLoader/CastLoader';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { requestMovieCredits } from 'services/movieApi';
 import blank_profile from './blank_profile.jpg';

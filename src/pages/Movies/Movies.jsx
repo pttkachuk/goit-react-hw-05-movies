@@ -57,10 +57,12 @@ const Movies = () => {
         {movies && (
           <ul>
             {movies.map(({ id, title, name }) => {
-              <li key={id}>
-                <NavLink to={`${id}`} state={{ from: location }}></NavLink>
-                {title || name}
-              </li>;
+              return (
+                <li key={id}>
+                  <NavLink to={`${id}`} state={{ from: location }}></NavLink>
+                  {title || name}
+                </li>
+              );
             })}
           </ul>
         )}
