@@ -81,11 +81,10 @@ const MovieDetails = () => {
         <div>
           <ul>
             <li>
-              <NavLink
-                to="cast"
-                state={{ from: location.state?.from }}
-              ></NavLink>
-              Cast
+              <NavLink to="cast" state={{ from: location.state?.from }}>
+                {' '}
+                Cast
+              </NavLink>
             </li>
             <li>
               <NavLink to="reviews" state={{ from: location.state?.from }}>
