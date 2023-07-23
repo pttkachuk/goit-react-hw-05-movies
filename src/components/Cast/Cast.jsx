@@ -15,8 +15,8 @@ const Cast = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const cast = await requestMovieCredits(movieId);
-        setCast(cast);
+        const castData = await requestMovieCredits(movieId);
+        setCast(castData);
       } catch (error) {
         console.log(error);
       } finally {
