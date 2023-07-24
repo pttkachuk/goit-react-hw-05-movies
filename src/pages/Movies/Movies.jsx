@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
+//import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
@@ -14,11 +14,13 @@ const Movies = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const query = event.target.movie.value;
-    if (!query) {
-      toast('Enter please a movie name');
-    }
-    setSearchParams(query !== '' ? { query } : {});
+    const searchQuery = event.target.children.search.value;
+    setSearchParams({ query: searchQuery });
+    // const query = event.target.movie.value;
+    // if (!query) {
+    //   toast('Enter please a movie name');
+    // }
+    // setSearchParams(query !== '' ? { query } : {});
   };
 
   useEffect(() => {
@@ -28,10 +30,10 @@ const Movies = () => {
       }
       setIsLoading(true);
       try {
-        const movies = await requestMoviesByName(movieName);
-        setMovies(movies.result);
+        const moviesData = await requestMoviesByName(movieName);
+        setMovies(moviesData);
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -44,28 +46,28 @@ const Movies = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="movie"
+          name="search"
           placeholder="Enter the movie name..."
           autoComplete="off"
           defaultValue={movieName}
         />
         <button type="submit">Search</button>
       </form>
-      <ToastContainer />
       <>
         {isLoading && <CastLoader />}
-        {movies && (
-          <ul>
-            {movies.map(({ id, title, name }) => {
+        <ul>
+          {movies &&
+            movies.map(movie => {
               return (
-                <li key={id}>
-                  <NavLink to={`${id}`} state={{ from: location }}></NavLink>
-                  {title || name}
+                <li key={movie.id}>
+                  <NavLink to={`${movie.id}`} state={{ from: location }}>
+                    {' '}
+                    {movie.title || movie.name}
+                  </NavLink>
                 </li>
               );
             })}
-          </ul>
-        )}
+        </ul>
       </>
     </div>
   );
