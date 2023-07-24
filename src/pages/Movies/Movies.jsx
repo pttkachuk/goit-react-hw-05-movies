@@ -1,8 +1,16 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { requestMoviesByName } from 'services/movieApi';
 import CastLoader from 'components/CastLoader/CastLoader';
+import {
+  MoviesSearchItem,
+  MoviesSearchList,
+  MoviesSearchLink,
+  Form,
+  Input,
+  SearchBtn,
+} from './MoviesStyled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -37,31 +45,34 @@ const Movies = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
+      <Form onSubmit={handleSubmit}>
+        <Input
           type="text"
           name="search"
           placeholder="Enter the movie name..."
           autoComplete="off"
           defaultValue={movieName}
         />
-        <button type="submit">Search</button>
-      </form>
+        <SearchBtn type="submit">Search</SearchBtn>
+      </Form>
       <>
         {isLoading && <CastLoader />}
-        <ul>
+        <MoviesSearchList>
           {movies &&
             movies.map(movie => {
               return (
-                <li key={movie.id}>
-                  <NavLink to={`${movie.id}`} state={{ from: location }}>
+                <MoviesSearchItem key={movie.id}>
+                  <MoviesSearchLink
+                    to={`${movie.id}`}
+                    state={{ from: location }}
+                  >
                     {' '}
                     {movie.title || movie.name}
-                  </NavLink>
-                </li>
+                  </MoviesSearchLink>
+                </MoviesSearchItem>
               );
             })}
-        </ul>
+        </MoviesSearchList>
       </>
     </div>
   );
