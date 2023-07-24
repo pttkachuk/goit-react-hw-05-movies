@@ -2,6 +2,7 @@ import CastLoader from 'components/CastLoader/CastLoader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { requestMovieReview } from 'services/movieApi';
+import { Item, Section, WrapperList } from './MovieReviewsStyled';
 
 const MovieReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -24,25 +25,25 @@ const MovieReviews = () => {
   }, [movieId]);
 
   return (
-    <section>
+    <Section>
       {isLoading ? (
         <CastLoader />
       ) : (
         <>
-          <ul>
+          <WrapperList>
             {reviews.map(review => {
               return (
-                <li key={review.id}>
+                <Item key={review.id}>
                   <h3>Author: {review.author}</h3>
                   <p>{review.content}</p>
-                </li>
+                </Item>
               );
             })}
-          </ul>
+          </WrapperList>
         </>
       )}
       {!reviews.length && <p>There are no reviews for this film yet.</p>}
-    </section>
+    </Section>
   );
 };
 
