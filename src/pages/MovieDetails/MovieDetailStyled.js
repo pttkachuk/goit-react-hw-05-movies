@@ -25,8 +25,13 @@ export const MovieInfo = styled.div`
 
 export const ExtraInfoSection = styled.div`
 text-align: center;
-  margin-top: 10px;
-  padding: 10px;
+margin-left: auto;
+margin-right:auto;
+`;
+
+export const InfoTitle = styled.h2`
+margin: 0;
+padding: 0;
 `;
 
 export const InfoSectionList = styled.ul`

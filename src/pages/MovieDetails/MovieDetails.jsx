@@ -18,6 +18,7 @@ import {
   Owerview,
   Genres,
   BackButton,
+  InfoTitle,
 } from './MovieDetailStyled';
 
 const IMAGEURL = 'https://image.tmdb.org/t/p/w500/';
@@ -67,9 +68,9 @@ const MovieDetails = () => {
           <MovieCard>
             <Image src={`${imgSRC}`} alt={movie?.title} />
             <MovieInfo>
-              <h2>
+              <InfoTitle>
                 {movie?.title} {releaseDate && `(${releaseDate})`}
-              </h2>
+              </InfoTitle>
               <MovieDesc>
                 <MovieDescItem>
                   {' '}
@@ -84,7 +85,7 @@ const MovieDetails = () => {
               </MovieDesc>
             </MovieInfo>
             <ExtraInfoSection>
-              <h2>Additional information</h2>
+              <InfoTitle>Additional information</InfoTitle>
               <div>
                 <InfoSectionList>
                   <InfoListItem>
@@ -93,14 +94,14 @@ const MovieDetails = () => {
                       Cast
                     </InfoLink>
                   </InfoListItem>
-                  <li>
+                  <InfoListItem>
                     <InfoLink
                       to="reviews"
                       state={{ from: location.state?.from }}
                     >
                       Reviews
                     </InfoLink>
-                  </li>
+                  </InfoListItem>
                 </InfoSectionList>
               </div>
             </ExtraInfoSection>
