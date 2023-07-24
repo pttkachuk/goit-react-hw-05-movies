@@ -1,18 +1,19 @@
 import CastLoader from 'components/CastLoader/CastLoader';
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Container, Header, Link } from './SharedLayoutStyled';
 
 const SharedLayout = () => {
   return (
-    <div>
-      <header>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-      </header>
+    <Container>
+      <Header>
+        <Link to="/">Home</Link>
+        <Link to="/movies">Movies</Link>
+      </Header>
       <Suspense fallback={<CastLoader />}>
         <Outlet />
       </Suspense>
-    </div>
+    </Container>
   );
 };
 
