@@ -26,7 +26,7 @@ const MovieDetails = () => {
         const movieData = await requestMovieById(movieId);
         setMovie(movieData);
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       } finally {
         seIsLoading(false);
       }
@@ -73,27 +73,30 @@ const MovieDetails = () => {
                 </li>
               </ul>
             </div>
+            <div>
+              <h2>Additional information</h2>
+              <div>
+                <ul>
+                  <li>
+                    <NavLink to="cast" state={{ from: location.state?.from }}>
+                      {' '}
+                      Cast
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="reviews"
+                      state={{ from: location.state?.from }}
+                    >
+                      Reviews
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         )}
       </section>
-      <div>
-        <h2>Additional information</h2>
-        <div>
-          <ul>
-            <li>
-              <NavLink to="cast" state={{ from: location.state?.from }}>
-                {' '}
-                Cast
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="reviews" state={{ from: location.state?.from }}>
-                Reviews
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      </div>
       <Suspense>
         <Outlet />
       </Suspense>
