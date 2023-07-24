@@ -9,7 +9,7 @@ const IMAGEURL = 'https://image.tmdb.org/t/p/w500';
 const Cast = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [cast, setCast] = useState(null);
+  const [cast, setCast] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -10,7 +10,7 @@ export const requestTrandingMovies = async () => {
 };
 
 //SEARCH MOVIE REQUEST
-export const requestMoviesByName = async (query) => {
+export const requestMoviesByName = async query => {
     const { data } = await axios.get(`/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
     return data;
 };
