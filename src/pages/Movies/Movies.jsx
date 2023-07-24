@@ -22,6 +22,9 @@ const Movies = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const searchQuery = event.target.children.search.value;
+    if (!searchQuery) {
+      return;
+    }
     setSearchParams({ query: searchQuery });
   };
 
@@ -51,7 +54,9 @@ const Movies = () => {
           name="search"
           placeholder="Enter the movie name..."
           autoComplete="off"
+          autoFocus
           defaultValue={movieName}
+          required
         />
         <SearchBtn type="submit">Search</SearchBtn>
       </Form>
