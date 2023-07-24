@@ -29,16 +29,16 @@ const MovieReviews = () => {
         <CastLoader />
       ) : (
         <>
-          {reviews.map(({ id, author, content }) => {
-            return (
-              <div>
-                <li key={id}>
-                  <h3>Author: {author}</h3>
-                  <p>{content}</p>
+          <ul>
+            {reviews.map(review => {
+              return (
+                <li key={review.id}>
+                  <h3>Author: {review.author}</h3>
+                  <p>{review.content}</p>
                 </li>
-              </div>
-            );
-          })}
+              );
+            })}
+          </ul>
         </>
       )}
       {!reviews.length && <p>There are no reviews for this film yet.</p>}
