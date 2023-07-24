@@ -25,7 +25,6 @@ const Cast = () => {
     };
     fetchData();
   }, [movieId]);
-  //  if (!cast) { return; };
 
   return (
     <section>

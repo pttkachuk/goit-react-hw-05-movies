@@ -38,9 +38,6 @@ const MovieDetails = () => {
     navigate(location.state.from);
   };
 
-  //const { genres, title, release_date, overview, vote_average, poster_path } =
-  // movie;
-
   const imgSRC = movie?.poster_path
     ? IMAGEURL + movie?.poster_path
     : blank_profile;

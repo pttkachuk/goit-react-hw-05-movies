@@ -1,4 +1,3 @@
-//import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
@@ -16,11 +15,6 @@ const Movies = () => {
     event.preventDefault();
     const searchQuery = event.target.children.search.value;
     setSearchParams({ query: searchQuery });
-    // const query = event.target.movie.value;
-    // if (!query) {
-    //   toast('Enter please a movie name');
-    // }
-    // setSearchParams(query !== '' ? { query } : {});
   };
 
   useEffect(() => {
