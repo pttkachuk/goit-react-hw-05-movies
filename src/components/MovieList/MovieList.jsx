@@ -1,6 +1,11 @@
 import CastLoader from 'components/CastLoader/CastLoader';
 import PropTypes from 'prop-types';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import {
+  TrdListItem,
+  TrendingList,
+  TrendingMovieLink,
+} from './MovieListStyled';
 
 const MovieList = ({ tranding, loading }) => {
   const location = useLocation();
@@ -9,17 +14,20 @@ const MovieList = ({ tranding, loading }) => {
       {loading ? (
         <CastLoader />
       ) : (
-        <ul>
+        <TrendingList>
           {tranding.map(({ id, title, name }) => {
             return (
-              <li key={id}>
-                <NavLink to={`movies/${id}`} state={{ from: location }}>
+              <TrdListItem key={id}>
+                <TrendingMovieLink
+                  to={`movies/${id}`}
+                  state={{ from: location }}
+                >
                   {title || name}
-                </NavLink>
-              </li>
+                </TrendingMovieLink>
+              </TrdListItem>
             );
           })}
-        </ul>
+        </TrendingList>
       )}
     </>
   );
