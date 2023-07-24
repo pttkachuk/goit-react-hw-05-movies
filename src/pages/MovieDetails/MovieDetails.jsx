@@ -1,14 +1,24 @@
 import { useEffect, useState, Suspense } from 'react';
-import {
-  Outlet,
-  useParams,
-  useLocation,
-  useNavigate,
-  NavLink,
-} from 'react-router-dom';
+import { Outlet, useParams, useLocation, useNavigate } from 'react-router-dom';
 import CastLoader from 'components/CastLoader/CastLoader';
 import { requestMovieById } from 'services/movieApi';
 import blank_profile from '../../components/Cast/blank_profile.jpg';
+import {
+  MovieCard,
+  Wrapper,
+  Image,
+  MovieInfo,
+  ExtraInfoSection,
+  InfoSectionList,
+  InfoLink,
+  InfoListItem,
+  MovieDesc,
+  MovieDescItem,
+  Score,
+  Owerview,
+  Genres,
+  BackButton,
+} from './MovieDetailStyled';
 
 const IMAGEURL = 'https://image.tmdb.org/t/p/w500/';
 
@@ -47,53 +57,56 @@ const MovieDetails = () => {
 
   return (
     <>
-      <section>
+      <Wrapper>
         {location.state?.from && (
-          <button onClick={handleBackBtn}>Go Back</button>
+          <BackButton onClick={handleBackBtn}>Go Back</BackButton>
         )}
         {isLoading || !movie ? (
           <CastLoader />
         ) : (
-          <div>
-            <img src={`${imgSRC}`} alt={movie?.title} />
-            <div>
+          <MovieCard>
+            <Image src={`${imgSRC}`} alt={movie?.title} />
+            <MovieInfo>
               <h2>
                 {movie?.title} {releaseDate && `(${releaseDate})`}
               </h2>
-              <ul>
-                <li> {userScore > 0 && <p>User Score: {userScore}%</p>}</li>
-                <li>
-                  <p>{movie?.overview}</p>
-                </li>
-                <li>
-                  <p>{movieGenres || ' - '}</p>
-                </li>
-              </ul>
-            </div>
-            <div>
+              <MovieDesc>
+                <MovieDescItem>
+                  {' '}
+                  {userScore > 0 && <Score>User Score: {userScore}%</Score>}
+                </MovieDescItem>
+                <MovieDescItem>
+                  <Owerview>{movie?.overview}</Owerview>
+                </MovieDescItem>
+                <MovieDescItem>
+                  <Genres>Genres: {movieGenres || ' - '}</Genres>
+                </MovieDescItem>
+              </MovieDesc>
+            </MovieInfo>
+            <ExtraInfoSection>
               <h2>Additional information</h2>
               <div>
-                <ul>
-                  <li>
-                    <NavLink to="cast" state={{ from: location.state?.from }}>
+                <InfoSectionList>
+                  <InfoListItem>
+                    <InfoLink to="cast" state={{ from: location.state?.from }}>
                       {' '}
                       Cast
-                    </NavLink>
-                  </li>
+                    </InfoLink>
+                  </InfoListItem>
                   <li>
-                    <NavLink
+                    <InfoLink
                       to="reviews"
                       state={{ from: location.state?.from }}
                     >
                       Reviews
-                    </NavLink>
+                    </InfoLink>
                   </li>
-                </ul>
+                </InfoSectionList>
               </div>
-            </div>
-          </div>
+            </ExtraInfoSection>
+          </MovieCard>
         )}
-      </section>
+      </Wrapper>
       <Suspense>
         <Outlet />
       </Suspense>
