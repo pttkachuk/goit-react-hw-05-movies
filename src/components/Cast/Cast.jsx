@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { requestMovieCredits } from 'services/movieApi';
 import blank_profile from './blank_profile.jpg';
+import { List, ListItem, Section } from './CastStyled';
 
 const IMAGEURL = 'https://image.tmdb.org/t/p/w500';
 
@@ -27,17 +28,17 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <section>
+    <Section>
       {isLoading || !cast ? (
         <CastLoader />
       ) : (
-        <ul>
+        <List>
           {cast.map(({ id, profile_path, name, character }) => {
             const imgSRC = profile_path
               ? IMAGEURL + profile_path
               : blank_profile;
             return (
-              <li key={id}>
+              <ListItem key={id}>
                 <img src={imgSRC} alt={name} width={200} height={300} />
                 <div>
                   <p>
@@ -48,15 +49,15 @@ const Cast = () => {
                     <span> {character ? character : 'Unknown'}</span>
                   </p>
                 </div>
-              </li>
+              </ListItem>
             );
           })}
-        </ul>
+        </List>
       )}
       {!cast.length && (
         <p>There is no information about the cast of this film yet. Sorry...</p>
       )}
-    </section>
+    </Section>
   );
 };
 
